@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        REMOTE_SERVER_CREDENTIALS = credentials('credential-ssh-11')
+        REMOTE_SERVER_CREDENTIALS = credentials('test-ssh')
     }
 
     stages {

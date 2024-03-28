@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git credentialsId: 'github-manurungrizky', url: 'git@github.com:manurungrizky/belajar-jenkins-pipeline.git'
+                git credentialsId: 'github-manurungrizky', url: 'https://github.com/manurungrizky/belajar-jenkins-pipeline.git'
 
                 sshagent(['ssh-credential-21']) {
                     sh """

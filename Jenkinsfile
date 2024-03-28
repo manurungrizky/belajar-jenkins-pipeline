@@ -4,7 +4,7 @@ pipeline {
     environment {
         REMOTE_HOST = "172.72.72.21"
         REMOTE_USER = "wmuser"
-        REMOTE_PATH = "/opt/sag"
+        REMOTE_PATH = "/home/wmuser"
     }
 
     stages {

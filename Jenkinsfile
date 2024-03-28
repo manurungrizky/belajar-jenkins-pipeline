@@ -1,13 +1,22 @@
 pipeline {
     agent any
 
+    environment {
+        REMOTE_HOST = "172.72.72.21"
+        REMOTE_USER = "wmuser"
+        REMOTE_PATH = "/opt/sag"
+    }
+
     stages {
-        stage('Test Remote Server Credentials') {
+        stage('Clone Repository') {
             steps {
-                script {
-                    sshagent(['ssh-credential-21']) {
-						sh 'ssh wmuser@172.72.72.21 "echo Remote server credentials are working"'
-					}
+                git credentialsId: 'github-manurungrizky', url: 'git@github.com:manurungrizky/belajar-jenkins-pipeline.git'
+
+                sshagent(['ssh-credential-21']) {
+                    sh """
+                        ssh ${REMOTE_USER}@${REMOTE_HOST} "rm -rf ${REMOTE_PATH}/*"
+                        scp -r * ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}
+                    """
                 }
             }
         }
